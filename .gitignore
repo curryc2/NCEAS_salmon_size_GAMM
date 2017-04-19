@@ -32,3 +32,10 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 .Rproj.user
+
+#Data Files
+# exclude everything
+Data/*
+
+# exception to the rule
+!Data/README.md
