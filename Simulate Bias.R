@@ -5,7 +5,7 @@
 #
 #Purpose: Evaluate Changes in Size at Age Using Generalized Additive Mixed Models
 #
-# 1) Read in data using FishData from throson
+# 1) 
 #
 #
 #==================================================================================================
@@ -63,7 +63,7 @@ points(x=days, y=N, pch=21, bg=rgb(1,0,0,alpha=0.2))
 #Plot the blocks
 i <- 1
 for(i in 1:n.pds) {
-  polygon(x=c() , y= )
+  polygon(x=c(dates.pds[i,1], dates.pds[i,1], dates.pds[i,2], dates.pds[i,2]), y=c(ylim, rev(ylim)), col=rgb(1,1,1,alpha=0.1))
 }
 
 errbar ()
