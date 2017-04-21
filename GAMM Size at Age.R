@@ -34,7 +34,11 @@ unique(asl$ASLProjectType)
 
 #Aggreagate up to Region level (just for fun)
 
-asl.agg <- data.frame(asl %>% group_by(SASAP.Region, Year, SWage, Species) %>% summarize(mean=mean(Length_mean, na.rm=TRUE)) %>% filter(mean!='NaN'))
+asl.agg <- data.frame(asl %>% group_by(SASAP.Region, Year, SWage, Species) %>% filter(!is.na(Length_mean)))
+                        # summarize(mean=mean(Length_mean, na.rm=TRUE)) %>% filter(mean!='NaN'))
+
+#Limit to only looking at escapement
+asl.agg <- asl.agg[asl.agg$]
 
 asl.agg <- na.omit(asl.agg) #Remove NA's
 #Example GAMM
@@ -58,14 +62,33 @@ acf(residuals(gam.1,type="response"),main="standardized residual ACF")
 #GAMM with Region as RE'
 
 
+#Random Intercept
+gamm.1 <- gamm4(mean~s(Year) + SWage + Species, random=~(1|SASAP.Region), data=asl.agg, REML=TRUE)
+summary(gamm.1$gam)
+summary(gamm.1$mer)
+plot(gamm.1$gam)
 
-gamm.1 <- gamm4(mean~s(Year, bs='cr') + SWage + Species, random=~(1|SASAP.Region), data=asl.agg)
+#In reality we should have fixed effects be species by age interaction
+gamm.2 <- gamm4(mean~s(Year) + SWage + Species, random=~(1|SASAP.Region), data=asl.agg, REML=TRUE)
+summary(gamm.2$gam)
+summary(gamm.2$mer)
+plot(gamm.2$gam)
 
+gamm.2 <- gamm4(mean~s(Year, bs='cr') + SWage + Species, random=~(Year|SASAP.Region), data=asl.agg, REML=TRUE)
+summary(gamm.2$gam)
 
-gamm.2 <- gamm4(mean~s(Year, bs='cr') + SWage + Species, random=~(Year|SASAP.Region), data=asl.agg)
+gamm.3 <- gamm4(mean~s(Year, bs='cr') +  SWage +Species, random=~(Year|SASAP.Region), data=asl.agg, REML=TRUE)
+summary(gamm.3$gam)
+#W
+#==============================================================
+##### Chinook only #####
 
+chinook.dat <- asl.agg[asl.agg$Species=='chinook',]
+head(chinook.dat)
 
+#For nested RE SASAP.Region:Population
 
+#   (1|tree/organ/sample)
 
 # 
 # gam.1 <- gam(mean~s(Year, bs='cr'), correlation=corAR1(), data=asl.agg)

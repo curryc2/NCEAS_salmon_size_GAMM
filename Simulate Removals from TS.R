@@ -141,7 +141,7 @@ g <- ggplot(list.slp.sd, aes(x=Removed, y=value, color=OceanAge)) +
       theme_gray() +
       geom_smooth()
 g
-
+ggsave('Plots/SD of Slope as Fxn of Removals.png', plot=g, height=6, width=8)
 #Change in CV
 list.slp.cv<- melt(slp.cv)
 
@@ -158,11 +158,13 @@ g <- ggplot(list.slp.cv, aes(x=Removed, y=value, color=OceanAge)) +
 g
 ggsave('Plots/CV of Slope as Fxn of Removals.png', plot=g, height=6, width=8)
 
+###################
+# 
+
+sim.rem <- which(arima.sim(model=list(Ar=0.5),n=n.years)>0)
 
 
-
-
-
+which(arima.sim(model=list(Ar=0),n=n.years)>0)
 
 
 plt.dat <- yr.dat

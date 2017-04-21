@@ -63,7 +63,7 @@ points(x=days, y=N, pch=21, bg=rgb(1,0,0,alpha=0.2))
 #Plot the blocks
 i <- 1
 for(i in 1:n.pds) {
-  polygon(x=c(dates.pds[i,1], dates.pds[i,1], dates.pds[i,2], dates.pds[i,2]), y=c(ylim, rev(ylim)), col=rgb(1,1,1,alpha=0.1))
+  polygon(x=c(dates.pds[i,1], dates.pds[i,1], dates.pds[i,2], dates.pds[i,2]), y=c(ylim, rev(ylim)), fill=rgb(1,1,1,alpha=0.1))
 }
 
 errbar ()
