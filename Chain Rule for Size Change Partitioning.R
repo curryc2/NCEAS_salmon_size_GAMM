@@ -16,6 +16,7 @@ require(tidyverse)
 require(lme4)
 require(gamm4)
 require(reshape2)
+require(lubridate)
 #Read in Bristol Bay data
 
 load('Data/BB_linked.RData')
@@ -23,10 +24,19 @@ load('Data/BB_linked.RData')
 #Add year
 dat$year <- year(dat$sampleDate)
 
+# dat$sampleDate <- as.character(dat$sampleDate)
+#Add doy
+dat$doy <- yday(dat$sampleDate)
+
 #Remove the 
 
 #Pair down to single year
 temp.dat <- dat[dat$CatchOrEsc=='Catch' & dat$District==322 & dat$Species=='sockeye',] #Egegik
+
+
+trial <- 
+
+
 
 #Combine to the annual level
 yr.dat <- data.frame(temp.dat %>% group_by(year,Salt.Water.Age) %>% 
