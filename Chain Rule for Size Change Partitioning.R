@@ -3,13 +3,13 @@
 #Creator: Curry James Cunningham, NOAA/NMFS, ABL
 #Date: 4.20.17
 #
-#Purpose: 
+#Purpose: Overall goal is to partition change in size over time between: 1) Change in age composition, 2) Change in growth (size@age)
 #
 #
 #
 #==================================================================================================
 #NOTES:
-#  a) 
+#  a) Chain Rule: d x.mu/dt = P_a * (dX_a/dt) + X_a * (dP_a/dt)
 #
 #==================================================================================================
 require(tidyverse)
@@ -39,6 +39,12 @@ yr.dat <- na.omit(yr.dat)
 head(yr.dat)
 
 years <- 1980:max(yr.dat$year)
+
+
+
+
+
+
 
 
 

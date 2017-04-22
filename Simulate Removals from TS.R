@@ -11,7 +11,7 @@
 #
 #==================================================================================================
 #NOTES:
-#  a) 
+#  a) Alternative for simulating autocorrelation, generate removal states from 2x2 probability matrix. 
 #
 #==================================================================================================
 require(tidyverse)
